@@ -47,8 +47,9 @@
     class="text-primary-content text-sm"
     use:closeOnClickOrEscape={{
       enabled: isOpen,
-      callback: () => {
-        setTimeout(() => (isOpen = false), 0);
+      callback: (event) => {
+        isOpen = false;
+        event.stopPropagation();
       },
     }}>
     {#each chains as chain (chain.id)}

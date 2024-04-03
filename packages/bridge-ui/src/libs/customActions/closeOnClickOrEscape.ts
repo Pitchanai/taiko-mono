@@ -1,6 +1,6 @@
 export function closeOnClickOrEscape(
   node: HTMLElement,
-  { enabled, callback }: { enabled: boolean; callback: () => void },
+  { enabled, callback }: { enabled: boolean; callback: (event: Event) => void },
 ) {
   let attached = false;
 
@@ -8,12 +8,12 @@ export function closeOnClickOrEscape(
     if (!enabled || !attached) return;
 
     if (event.type === 'click') {
-      callback();
+      callback(event);
     }
 
     // For keydown events, check if the key is Escape
     if (event.type === 'keydown' && (event as KeyboardEvent).key === 'Escape') {
-      callback();
+      callback(event);
     }
   };
 
